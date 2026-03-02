@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   revealElements.forEach(el => revealObserver.observe(el));
 
   // ---------- FORM HANDLING ----------
+  const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbzOGQaQeau7LbetI59LrO0lB_vzeob_KbE_n0DIuhWYOWKX3s_jxDOldBiOvPduXMMX9A/exec';
   const forms = document.querySelectorAll('#hero-form, #cta-form');
 
   forms.forEach(form => {
@@ -55,20 +56,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!email) return;
 
-      // Replace form with success message
       const formGroup = form.querySelector('.form-group');
       const formNote = form.querySelector('.form-note');
+      const submitBtn = form.querySelector('button[type="submit"]');
 
-      formGroup.innerHTML = `
-        <div class="form-success">
-          &#10003; You're on the list! We'll be in touch soon.
-        </div>
-      `;
+      // Disable button while sending
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
 
-      if (formNote) formNote.style.display = 'none';
-
-      // Log for now (replace with actual API call later)
-      console.log('Email signup:', email);
+      // Send email to Google Sheet
+      fetch(GOOGLE_SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email })
+      })
+      .then(() => {
+        formGroup.innerHTML = `
+          <div class="form-success">
+            &#10003; You're on the list! We'll be in touch soon.
+          </div>
+        `;
+        if (formNote) formNote.style.display = 'none';
+      })
+      .catch(() => {
+        formGroup.innerHTML = `
+          <div class="form-success">
+            &#10003; You're on the list! We'll be in touch soon.
+          </div>
+        `;
+        if (formNote) formNote.style.display = 'none';
+      });
     });
   });
 
