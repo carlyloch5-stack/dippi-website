@@ -1205,10 +1205,16 @@ ul {
 
 /* ---------- RESPONSIVE HERO ---------- */
 @media (max-width: 900px) {
+  .hero {
+    justify-content: flex-start;
+    padding-top: 5.5rem;
+  }
+
   .hero-inner {
     grid-template-columns: 1fr;
     text-align: center;
     gap: 1.25rem;
+    padding: 0.5rem 0;
   }
 
   .hero-scene {
