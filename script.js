@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   revealElements.forEach(el => revealObserver.observe(el));
 
   // ---------- FORM HANDLING ----------
-  const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbzOGQaQeau7LbetI59LrO0lB_vzeob_KbE_n0DIuhWYOWKX3s_jxDOldBiOvPduXMMX9A/exec';
+  const SIGNUP_ENDPOINT = 'https://formsubmit.co/ajax/carlyloch5@gmail.com';
   const forms = document.querySelectorAll('#hero-form, #cta-form');
 
   forms.forEach(form => {
@@ -64,12 +64,19 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
 
-      // Send email to Google Sheet
-      fetch(GOOGLE_SHEET_URL, {
+      fetch(SIGNUP_ENDPOINT, {
         method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email })
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          source: form.id === 'hero-form' ? 'hero' : 'bottom-cta',
+          _subject: 'New Dippi waitlist signup',
+          _template: 'table'
+        })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error('signup failed');
+        return res.json();
       })
       .then(() => {
         formGroup.innerHTML = `
@@ -80,12 +87,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (formNote) formNote.style.display = 'none';
       })
       .catch(() => {
-        formGroup.innerHTML = `
-          <div class="form-success">
-            &#10003; You're on the list! We'll be in touch soon.
-          </div>
-        `;
-        if (formNote) formNote.style.display = 'none';
+        submitBtn.disabled = false;
+        submitBtn.textContent = form.id === 'hero-form' ? 'Notify Me' : 'Join the Waitlist';
+        let err = form.querySelector('.form-error');
+        if (!err) {
+          err = document.createElement('p');
+          err.className = 'form-error';
+          err.style.cssText = 'color: #ffd7b0; font-size: 0.85rem; margin-top: 0.5rem;';
+          form.appendChild(err);
+        }
+        err.textContent = "Hmm, that didn't go through. Please try again.";
       });
     });
   });

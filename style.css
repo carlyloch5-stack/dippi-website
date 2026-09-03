@@ -332,22 +332,22 @@ ul {
   flex: 1;
   padding: 0.85rem 1.25rem;
   border-radius: 100px;
-  border: 2px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--white);
+  border: 2px solid var(--white);
+  background: var(--white);
+  color: var(--purple-950);
   font-family: var(--font-body);
   font-size: 0.95rem;
   outline: none;
   transition: all 0.3s var(--ease-out);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
 }
 
 .hero-form input::placeholder {
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--gray-500);
 }
 
 .hero-form input:focus {
   border-color: var(--orange-400);
-  background: rgba(255, 255, 255, 0.12);
 }
 
 .form-note {
@@ -1056,22 +1056,22 @@ ul {
   flex: 1;
   padding: 0.9rem 1.25rem;
   border-radius: 100px;
-  border: 2px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--white);
+  border: 2px solid var(--white);
+  background: var(--white);
+  color: var(--purple-950);
   font-family: var(--font-body);
   font-size: 0.95rem;
   outline: none;
   transition: all 0.3s var(--ease-out);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
 }
 
 .cta-form input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--gray-500);
 }
 
 .cta-form input:focus {
   border-color: var(--orange-400);
-  background: rgba(255, 255, 255, 0.12);
 }
 
 .cta-options {
