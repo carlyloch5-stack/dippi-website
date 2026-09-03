@@ -1212,12 +1212,18 @@ ul {
   }
 
   .hero-scene {
-    width: clamp(220px, 55vw, 340px);
+    width: clamp(200px, 48vw, 300px);
+  }
+
+  .hero-title {
+    font-size: clamp(2.4rem, 10vw, 3.5rem);
   }
 
   .hero-subtitle {
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
   }
 
   .hero-form .form-group {
