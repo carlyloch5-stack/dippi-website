@@ -78,7 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!res.ok) throw new Error('signup failed');
         return res.json();
       })
-      .then(() => {
+      .then(data => {
+        if (data.success !== 'true' && data.success !== true) throw new Error('signup rejected');
         formGroup.innerHTML = `
           <div class="form-success">
             &#10003; You're on the list! We'll be in touch soon.
