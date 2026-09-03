@@ -1208,7 +1208,11 @@ ul {
   .hero-inner {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 3rem;
+    gap: 1.25rem;
+  }
+
+  .hero-scene {
+    width: clamp(220px, 55vw, 340px);
   }
 
   .hero-subtitle {
