@@ -71,7 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
           email: email,
           source: form.id === 'hero-form' ? 'hero' : 'bottom-cta',
           _subject: 'New Dippi waitlist signup',
-          _template: 'table'
+          _template: 'table',
+          _cc: 'nab.isthisabanger@gmail.com'
         })
       })
       .then(res => {
