@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   revealElements.forEach(el => revealObserver.observe(el));
 
   // ---------- FORM HANDLING ----------
-  const SIGNUP_ENDPOINT = 'https://formsubmit.co/ajax/carlyloch5@gmail.com';
+  const SIGNUP_ENDPOINT = 'https://formsubmit.co/ajax/d82e4433baf3cd56d1b004ad29f56314';
   const forms = document.querySelectorAll('#hero-form, #cta-form');
 
   forms.forEach(form => {
